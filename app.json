@@ -1,0 +1,50 @@
+{
+    "name": "VEXERA VC USERBOT",
+    "description": "Telegram UserBot for Video Chat.",
+    "logo": "https://telegra.ph/file/50f3358c9448f593db1a7.jpg",
+    "keywords": [
+        "Telegram",
+        "MusicPlayer",
+        "VideoPlayer"
+    ],
+    "repository": "https://github.com/eVEXERA/VEXERAuserbot",
+    "env": {
+        "SESSION": {
+            "description": "Pyrogram String Session",
+            "required": true
+        },
+        "API_ID": {
+            "description": "Your api id from my.telegram.org/apps",
+            "required": true
+        },
+        "HNDLR": {
+            "description": "Set handler",
+            "required": false,
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "Your api hash from my.telegram.org/apps",
+            "required": false
+        },
+        "SUDO_USERS": {
+            "description": "User ID list user counts as admin everywhere(separator using space)",
+            "required": false
+        }
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "stack": "container"
+}
