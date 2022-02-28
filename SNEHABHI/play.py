@@ -31,22 +31,13 @@ def ytsearch(query):
         return 0
 
 
-async def ytdl(link):
-    proc = await asyncio.create_subprocess_exec(
-        "yt-dlp",
-        "-g",
-        "-f",
-        # CHANGE THIS BASED ON WHAT YOU WANT
-        "bestaudio",
-        f"{link}",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+async def ytdl(link: str):
+    stdout, stderr = await bash(
+        f'yt-dlp --geo-bypass -g -f "best[height<=?720][width<=?1280]/best" {link}'
     )
-    stdout, stderr = await proc.communicate()
     if stdout:
-        return 1, stdout.decode().split("\n")[0]
-    else:
-        return 0, stderr.decode()
+        return 1, stdout
+    return 0, stderr
 
 
 # video player
@@ -64,22 +55,13 @@ def ytsearch(query):
         return 0
 
 
-async def ytdl(link):
-    proc = await asyncio.create_subprocess_exec(
-        "yt-dlp",
-        "-g",
-        "-f",
-        # CHANGE THIS BASED ON WHAT YOU WANT
-        "best[height<=?720][width<=?1280]",
-        f"{link}",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+async def ytdl(link: str):
+    stdout, stderr = await bash(
+        f'yt-dlp --geo-bypass -g -f "best[height<=?720][width<=?1280]/best" {link}'
     )
-    stdout, stderr = await proc.communicate()
     if stdout:
-        return 1, stdout.decode().split("\n")[0]
-    else:
-        return 0, stderr.decode()
+        return 1, stdout
+    return 0, stderr
 
 
 @Client.on_message(filters.command(["play", "/play"], prefixes=f"{HNDLR}"))
