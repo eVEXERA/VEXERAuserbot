@@ -15,7 +15,16 @@ from youtubesearchpython import VideosSearch
 from config import HNDLR, bot, call_py
 from SNEHABHI.queues import QUEUE, add_to_queue, get_queue
 
-
+async def bash(cmd):
+    process = await asyncio.create_subprocess_shell(
+        cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, stderr = await process.communicate()
+    err = stderr.decode().strip()
+    out = stdout.decode().strip()
+    return out, err
 # music player
 def ytsearch(query):
     try:
