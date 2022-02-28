@@ -4,10 +4,10 @@ from pyrogram.types import Message
 from config import HNDLR, call_py
 from SNEHABHI.lumdlele.decorators import authorized_users_only
 from SNEHABHI.lumdlele.handlers import skip_current_song, skip_item
-from SNEHABHI.lumdlele.queues import QUEUE, clear_queue
+from SNEHABHI.queues import QUEUE, clear_queue
 
 
-@Client.on_message(filters.command(["skip"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["skip", "/skip"], prefixes=f"{HNDLR}"))
 async def skip(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
@@ -40,7 +40,7 @@ async def skip(client, m: Message):
             await m.reply(OP)
 
 
-@Client.on_message(filters.command(["end", "stop"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["/end", "end", "/stop"], prefixes=f"{HNDLR}"))
 async def stop(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
@@ -55,7 +55,7 @@ async def stop(client, m: Message):
         await m.reply("**🤨Nothing is playing !**")
 
 
-@Client.on_message(filters.command(["pause"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["pause", "/pause"], prefixes=f"{HNDLR}"))
 async def pause(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
@@ -71,7 +71,7 @@ async def pause(client, m: Message):
         await m.reply("**🤨Nothing is playing!**")
 
 
-@Client.on_message(filters.command(["resume"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["/resume", "resume"], prefixes=f"{HNDLR}"))
 async def resume(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
