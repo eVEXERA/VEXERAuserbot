@@ -5,7 +5,7 @@ from config import HNDLR
 from SNEHABHI.lumdlele.get_file_id import get_file_id
 
 
-@Client.on_message(filters.command(["id"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["id", "/id"], prefixes=f"{HNDLR}"))
 async def showid(_, message: Message):
     chat_type = message.chat.type
 
